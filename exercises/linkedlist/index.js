@@ -105,6 +105,43 @@ class LinkedList {
 
         return null;
     }
+
+    removeAt(index) {
+
+        if(!this.head) {
+            return;
+        }
+
+        if(index === 0) {
+            this.head = this.head.next;
+            return;
+        }
+
+        let previousNode = this.getAt(index - 1);
+        let nextNode = this.getAt(index + 1);
+
+        if(previousNode) {
+            previousNode.next = nextNode;
+        }
+
+        return;
+    }
+
+    insertAt(data, index) {
+
+        if(!this.head) {
+            this.head = new Node(data);
+            return;
+        }
+
+        if(index === 0) {
+            this.head = new Node(data, this.head);
+            return;
+        }
+
+        let previousNode = this.getAt(index - 1) || this.getLast();
+        previousNode.next = new Node(data, previousNode.next);    
+    }
 }
 
 module.exports = { Node, LinkedList }
